@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic E-Commerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='signin.html'">Sign In</button>
+            <button onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Classic E-Commerce</h1>
+            <p>Your one-stop shop for classic products.</p>
+        </section>
+    </main>
+
+    <!-- Products Section -->
+
+    <main>
+        <section class="products">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="SHEKHAR.webp" alt="Product 1">
+                    <h3>Product 1</h3>
+                    <p>$10.00</p>
+                    <button onclick="addToCart('Product 1', 10, 'SHEKHAR.webp')">Add to Cart</button>
+                    <button onclick="buyNow('Product 1', 10, 'SHEKHAR.webp')">Buy NOW</button>
+                </div>
+                <div class="product-item">
+                    <img src="images1.jpeg" alt="Product 2">
+                    <h3>Product 2</h3>
+                    <p>$15.00</p>
+                    <button onclick="addToCart('Product 2', 15, 'images1.jpeg')">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="image2.jpeg" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$20.00</p>
+                    <button onclick="addToCart('Product 3', 20, 'image2.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Add more products here -->
+            </div>
+        </section>
+    </main>
+
+    <main>
+        <section class="product-detail">
+            <img src="product1.webp" alt="Product 1">
+            <div>
+                <h2>Product 1</h2>
+                <p>$10.00</p>
+                <p>Product description goes here.</p>
+                <button onclick="addToCart('Product 1', 10, 'product1.webp')">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <main>
+        <section class="cart">
+            <h2>Your Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <p id="cart-total"></p>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Classic E-Commerce</p>
+    </footer>
+
+    <script>
+        function addToCart(productName, productPrice, productImage) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            const product = cart.find(item => item.name === productName);
+            if (product) {
+                product.quantity++;
+            } else {
+                cart.push({ name: productName, price: productPrice, quantity: 1, image: productImage });
+            }
+    
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+    </script>
+    
+</body>
+
+</html>
